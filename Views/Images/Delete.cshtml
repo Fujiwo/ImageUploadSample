@@ -1,0 +1,42 @@
+﻿@model ImageUploadSample.Models.Image
+@{
+    ViewData["Title"] = "削除";
+}
+
+<h1>削除</h1>
+
+<div>
+    <p>この画像を削除してよろしいですか?</p>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ThumbImage)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model is not null) {
+                <img src="/Images/Thumbnails/@Model.Id"
+                        alt="@Model.FileName"
+                        title="@Model.FileName" />
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="削除"
+               class="btn btn-danger" /> |
+        <a asp-action="Index">一覧へ戻る</a>
+    </form>
+</div>

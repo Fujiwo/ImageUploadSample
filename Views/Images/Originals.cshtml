@@ -1,0 +1,15 @@
+﻿@model ImageUploadSample.Models.Image
+@{
+    ViewData["Title"] = "画像";
+}
+
+<div>
+    <figure>
+        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.OriginalImage)"
+             alt="@Model.FileName" title="@Model.FileName" />
+        <figcaption>@Model.FileName</figcaption>
+    </figure>
+</div>
+<div>
+    <a asp-action="Index">一覧へ戻る</a>
+</div>

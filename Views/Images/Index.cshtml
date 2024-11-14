@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ImageUploadSample.Models.Image>
+@{
+    ViewData["Title"] = "一覧";
+}
+
+<p>
+    <a asp-action="Upload">画像をアップロード</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThumbImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var image in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => image.FileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => image.Description)
+                </td>
+                <td>
+                    <a asp-action="Originals" asp-route-id="@image.Id">
+                        @* サムネイル画像をリクエストして表示 *@
+                        @* <img src="/Images/Thumbnails/@image.Id" alt="@image.FileName" title="@image.FileName" /> *@
+
+                        @* Model に含まれるサムネイル画像のバイト列を Data URL 形式に変換して src 属性に設定して画像を表示 *@
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(image.ThumbImage)" alt="@image.FileName" title="@image.FileName" />
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@image.Id">編集</a> |
+                    <a asp-action="Delete" asp-route-id="@image.Id">削除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
