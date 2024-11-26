@@ -38,3 +38,16 @@ ImagesController.cs
 6. Views
 
 Views/Images/Index.cshtml, Views/Images/Upload.cshtml, Views/Images/Edit.cshtml, Views/Images/Delete.cshtml, Views/Images/Originals.cshtml
+
+## ER Diagram
+
+```mermaid
+erDiagram
+    Image {
+        int Id PK
+        nvarchar FileName
+        nvarchar Description
+        varbinary ThumbImage
+        varbinary OriginalImage
+    }
+```
